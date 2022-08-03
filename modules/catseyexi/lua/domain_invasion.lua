@@ -4,7 +4,7 @@
 -- 2022, CatsEyeXI (http://catseyexi.com) / --server server.catseyexi.com
 -----------------------------------
 require("modules/module_utils")
-require("scripts/zones/Escha_RuAun/Zone")
+require("scripts/zones/Kamihr_Drifts/Zone")
 -----------------------------------
 local m = Module:new("domain_invasion")
 
@@ -24,23 +24,23 @@ m:addOverride("xi.zones.GM_Home.Zone.onInitialize", function(zone)
 end)
 
 -- NM 1
-m:addOverride("xi.zones.Escha_RuAun.Zone.onZoneTick", function(zone)
+m:addOverride("xi.zones.Kamihr_Drifts.Zone.onZoneTick", function(zone)
 --    super(zone)
 
     -- Spawn mob if its the correct mob and if it isnt spawned already
     if
         GetServerVariable("[Domain]NM") == 0 and               -- Correct NM
         GetServerVariable("[Domain]NMSpawned") == 0 and        -- NM isn't spawned
-        (os.time() - GetServerVariable("[Domain]NMToD")) > 300 -- NM Cooldown
+        (os.time() - GetServerVariable("[Domain]NMToD")) > 30 -- NM Cooldown
     then
         local mob = zone:insertDynamicEntity({
             objtype = xi.objType.MOB,
             name = "Amphisbaena",
             look = "0x0000950100000000000000000000000000000000",
-            x = 0.421,
-            y = -43.600,
-            z = -196.322,
-            rotation = 65,
+            x = 372.03,
+            y = 20.92,
+            z = 258.70,
+            rotation = 190,
             widescan = 1,
             groupId = 1,
             groupZoneId = 222,
@@ -94,7 +94,7 @@ m:addOverride("xi.zones.Escha_RuAun.Zone.onZoneTick", function(zone)
             end,
         })
 
-        mob:setSpawn(0.421, -43.600, -196.322, 65)
+        mob:setSpawn(372.03, 20.92, 258.70, 190)
         mob:setDropID(3900)
         mob:spawn()
 
@@ -134,7 +134,7 @@ m:addOverride("xi.zones.Reisenjima_Henge.Zone.onZoneTick", function(zone)
     if
         GetServerVariable("[Domain]NM") == 1 and               -- Correct NM
         GetServerVariable("[Domain]NMSpawned") == 0 and        -- NM isn't spawned
-        (os.time() - GetServerVariable("[Domain]NMToD")) > 300 -- NM Cooldown
+        (os.time() - GetServerVariable("[Domain]NMToD")) > 30 -- NM Cooldown
     then
         local mob = zone:insertDynamicEntity({
             objtype = xi.objType.MOB,
@@ -250,7 +250,7 @@ m:addOverride("xi.zones.Provenance.Zone.onZoneTick", function(zone)
     if
         GetServerVariable("[Domain]NM") == 2 and               -- Correct NM
         GetServerVariable("[Domain]NMSpawned") == 0 and        -- NM isn't spawned
-        (os.time() - GetServerVariable("[Domain]NMToD")) > 300 -- NM Cooldown
+        (os.time() - GetServerVariable("[Domain]NMToD")) > 30 -- NM Cooldown
     then
         local mob = zone:insertDynamicEntity({
             objtype     = xi.objType.MOB,
@@ -281,7 +281,7 @@ m:addOverride("xi.zones.Provenance.Zone.onZoneTick", function(zone)
 				SetServerVariable("[Domain]Notification", 0)
 
                 -- Server-wide message
-                player:PrintToArea("{Apururu} Oh dear, one of our members-wembers in Escha Ru'Aun says that Amphisbaena could appear anytime in the next 5 minutes.", xi.msg.channel.SYSTEM_3, xi.msg.area.SYSTEM)
+                player:PrintToArea("{Apururu} Oh dear, one of our members-wembers in Kamihr Drifts says that Amphisbaena could appear anytime in the next 5 minutes.", xi.msg.channel.SYSTEM_3, xi.msg.area.SYSTEM)
                 player:PrintToArea("{Apururu} Would you please go and see if she's alrightaru?", xi.msg.channel.SYSTEM_3, xi.msg.area.SYSTEM)
 
                 -- Reward escha beads
@@ -349,7 +349,7 @@ m:addOverride("xi.zones.Provenance.Zone.onZoneTick", function(zone)
     if
         GetServerVariable("[Domain]NM") == 3 and               -- Correct NM
         GetServerVariable("[Domain]NMSpawned") == 0 and        -- NM isn't spawned
-        (os.time() - GetServerVariable("[Domain]NMToD")) > 300 -- NM Cooldown
+        (os.time() - GetServerVariable("[Domain]NMToD")) > 30 -- NM Cooldown
     then
         local mob = zone:insertDynamicEntity({
             objtype = xi.objType.MOB,
@@ -416,7 +416,7 @@ m:addOverride("xi.zones.Provenance.Zone.onZoneTick", function(zone)
 				SetServerVariable("[Domain]Notification", 0)
 
                 -- Server-wide message
-                player:PrintToArea("{Apururu} Oh dear, one of our members-wembers in Escha Ru'Aun says that Amphisbaena could appear anytime in the next 5 minutes.", xi.msg.channel.SYSTEM_3, xi.msg.area.SYSTEM)
+                player:PrintToArea("{Apururu} Oh dear, one of our members-wembers in Kamihr Drifts says that Amphisbaena could appear anytime in the next 5 minutes.", xi.msg.channel.SYSTEM_3, xi.msg.area.SYSTEM)
                 player:PrintToArea("{Apururu} Would you please go and see if she's alrightaru?", xi.msg.channel.SYSTEM_3, xi.msg.area.SYSTEM)
 
                 -- Reward escha beads
@@ -479,7 +479,7 @@ end)
 --------------------
 -- Entrances
 --------------------
--- Misareaux Coast -> Escha Ru'Aun
+-- Misareaux Coast -> Kamihr Drifts
 m:addOverride("xi.zones.Misareaux_Coast.npcs.Undulating_Confluence.onEventFinish", function(player, csid, option)
     if csid == 14 and option == 1 then
         npcUtil.giveItem(player, xi.items.SCROLL_OF_INSTANT_WARP) -- scroll_of_instant_warp
@@ -664,7 +664,7 @@ end)
 
 -- Exit Checks
 -- Make sure we remove xi.effect.ELVORSEAL from players when they zone
-m:addOverride("xi.zones.Escha_RuAun.Zone.onZoneOut", function(player)
+m:addOverride("xi.zones.Kamihr_Drifts.Zone.onZoneOut", function(player)
 --    super(zone)
     player:delStatusEffect(xi.effect.ELVORSEAL)
 end)
@@ -680,19 +680,19 @@ m:addOverride("xi.zones.Provenance.Zone.onZoneOut", function(player)
 end)
 
 -- Decorative Beams
-m:addOverride("xi.zones.Escha_RuAun.Zone.onInitialize", function(zone)
+m:addOverride("xi.zones.Kamihr_Drifts.Zone.onInitialize", function(zone)
     super(zone)
     local beam1 = zone:insertDynamicEntity({
         objtype = xi.objType.NPC,
         name = " ",
         flag = 2056,
         look = 2472,
-        x = -10.909,
-        y = -43.600,
-        z = -214.969,
+        x = 329.847,
+        y = 20.00,
+        z = 298.611,
         rotation = 65,
     })
-
+--[[
     local beam2 = zone:insertDynamicEntity({
         objtype = xi.objType.NPC,
         name = " ",
@@ -813,8 +813,8 @@ m:addOverride("xi.zones.Escha_RuAun.Zone.onInitialize", function(zone)
         z = -359.595,
         rotation = 65,
     })
+]]--
 end)
-
 -- End Decorations
 
 -- Elvorseal food (Pearlscale 5714)
