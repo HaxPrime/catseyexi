@@ -553,3 +553,41 @@ UPDATE `mob_groups` SET minLevel = "78", maxLevel = "80" WHERE name = "Eschan_Ga
 UPDATE `mob_groups` SET minLevel = "78", maxLevel = "80" WHERE name = "Eschan_Porxie";
 UPDATE `mob_groups` SET minLevel = "78", maxLevel = "80" WHERE name = "Eschan_Ilaern_brd";
 UPDATE `mob_groups` SET minLevel = "78", maxLevel = "80" WHERE name = "Eschan_Ilaern_nin";
+
+-- Set Escha mobs to aggro
+UPDATE `mob_pools` SET aggro = "1" WHERE poolid = "4652"; -- Eschan_Snapweed
+UPDATE `mob_pools` SET aggro = "1" WHERE poolid = "4848"; -- Eschan_Puk
+UPDATE `mob_pools` SET aggro = "1" WHERE poolid = "4849"; -- Eschan_Opo-Opo
+UPDATE `mob_pools` SET aggro = "1" WHERE poolid = "5349"; -- Eschan_Coeurl
+UPDATE `mob_pools` SET aggro = "1" WHERE poolid = "5350"; -- Eschan_Dhalmel
+UPDATE `mob_pools` SET aggro = "1" WHERE poolid = "5365"; -- Eschan_Yztarg
+UPDATE `mob_pools` SET aggro = "1" WHERE poolid = "5429"; -- Eschan_Jewelweed
+UPDATE `mob_pools` SET aggro = "1" WHERE poolid = "5538"; -- Eschan_Worm
+UPDATE `mob_pools` SET aggro = "1" WHERE poolid = "5539"; -- Eschan_Wasp
+UPDATE `mob_pools` SET aggro = "1" WHERE poolid = "5540"; -- Eschan_Goobbue
+UPDATE `mob_pools` SET aggro = "1" WHERE poolid = "5541"; -- Eschan_Shadow_Dragon
+UPDATE `mob_pools` SET aggro = "1" WHERE poolid = "5542"; -- Eschan_Tarichuk
+UPDATE `mob_pools` SET aggro = "1" WHERE poolid = "5543"; -- Eschan_Mosquito
+UPDATE `mob_pools` SET aggro = "1" WHERE poolid = "5620"; -- Eschan_Limule
+UPDATE `mob_pools` SET aggro = "1" WHERE poolid = "5621"; -- Eschan_Murex
+UPDATE `mob_pools` SET aggro = "1" WHERE poolid = "5622"; -- Eschan_Amoeban
+UPDATE `mob_pools` SET aggro = "1" WHERE poolid = "5623"; -- Eschan_Clionid
+UPDATE `mob_pools` SET aggro = "1" WHERE poolid = "5625"; -- Eschan_Zdei
+UPDATE `mob_pools` SET aggro = "1" WHERE poolid = "5626"; -- Eschan_Phuabo
+UPDATE `mob_pools` SET aggro = "1" WHERE poolid = "5627"; -- Eschan_Ghrah
+UPDATE `mob_pools` SET aggro = "1" WHERE poolid = "5628"; -- Eschan_Xzomit
+UPDATE `mob_pools` SET aggro = "1" WHERE poolid = "5629"; -- Eschan_Hpemde
+UPDATE `mob_pools` SET aggro = "1" WHERE poolid = "5630"; -- Eschan_Euvhi
+UPDATE `mob_pools` SET aggro = "1" WHERE poolid = "5632"; -- Eschan_Porxie
+UPDATE `mob_pools` SET aggro = "1" WHERE poolid = "5637"; -- Eschan_Bugard
+UPDATE `mob_pools` SET aggro = "1" WHERE poolid = "5650"; -- Eschan_Gargouille
+UPDATE `mob_pools` SET aggro = "1" WHERE poolid = "5651"; -- Eschan_Ilaerns_Wynav
+UPDATE `mob_pools` SET aggro = "1" WHERE poolid = "5652"; -- Eschan_Ilaerns_Euvhi
+UPDATE `mob_pools` SET aggro = "1" WHERE poolid = "5653"; -- Eschan_Ilaerns_Spirit
+UPDATE `mob_pools` SET aggro = "1" WHERE poolid = "6317"; -- Eschan_Crawler
+UPDATE `mob_pools` SET aggro = "1" WHERE poolid = "6406"; -- Eschan_Obdella
+UPDATE `mob_pools` SET aggro = "1" WHERE poolid = "6446"; -- Eschan_Vulture
+UPDATE `mob_pools` SET aggro = "1" WHERE poolid = "6482"; -- Eschan_Corse
+UPDATE `mob_pools` SET aggro = "1" WHERE poolid = "6553"; -- Eschan_Warrior
+UPDATE `mob_pools` SET aggro = "1" WHERE poolid = "6569"; -- Eschan_Sorcerer
+UPDATE `mob_pools` SET aggro = "1" WHERE poolid = "6591"; -- Eschan_Weapon

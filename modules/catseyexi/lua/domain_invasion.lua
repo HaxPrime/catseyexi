@@ -492,14 +492,14 @@ m:addOverride("xi.zones.Misareaux_Coast.npcs.Undulating_Confluence.onEventFinish
     end
 end)
 
--- Lock players in designated  area
+--[[ Lock players in designated  area
 m:addOverride("xi.zones.Escha_RuAun.Zone.onInitialize", function(zone)
     zone:registerRegion( 1, -21.333, -45.000, -358.966, 27.514, -35.000, -159.184)
 end)
 
 m:addOverride("xi.zones.Escha_RuAun.Zone.onRegionLeave", function(player, region)
     player:setPos(0.18, -43.965, -239.065)
-end)
+end) ]]--
 
 -- Qufim Island -> Provenance
 m:addOverride("xi.zones.Qufim_Island.npcs.Undulating_Confluence.onTrigger", function(player, npc)
