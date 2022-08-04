@@ -36,7 +36,7 @@ m:addOverride("xi.zones.Escha_RuAun.Zone.onZoneTick", function(zone, mob)
     then
         local mob = zone:insertDynamicEntity({
                 objtype = xi.objType.MOB,
-                name = "Eschan Byakko",
+                name = "Escha Byakko",
                 x = -417.141,
                 y = -70.298,
                 z = 409.665,
@@ -100,7 +100,7 @@ m:addOverride("xi.zones.Escha_RuAun.Zone.onZoneTick", function(zone, mob)
     then
         local mob = zone:insertDynamicEntity({
                 objtype = xi.objType.MOB,
-                name = "Eschan Suzaku",
+                name = "Escha Suzaku",
                 x = -513.394,
                 y = -70.020,
                 z = -269.371,
@@ -164,7 +164,7 @@ m:addOverride("xi.zones.Escha_RuAun.Zone.onZoneTick", function(zone, mob)
     then
         local mob = zone:insertDynamicEntity({
                 objtype = xi.objType.MOB,
-                name = "Eschan Genbu",
+                name = "Escha Genbu",
                 x = 260.208,
                 y = -70.298,
                 z = 523.173,
@@ -230,7 +230,7 @@ m:addOverride("xi.zones.Escha_RuAun.Zone.onZoneTick", function(zone, mob)
     then
         local mob = zone:insertDynamicEntity({
                 objtype = xi.objType.MOB,
-                name = "Eschan Seiryu",
+                name = "Escha Seiryu",
                 x = -417.141,
                 y = -70.298,
                 z = 409.665,
@@ -296,7 +296,7 @@ m:addOverride("xi.zones.Escha_RuAun.Zone.onZoneTick", function(zone, mob)
             
         local mob = zone:insertDynamicEntity({
                 objtype = xi.objType.MOB,
-                name = "Eschan Kirin",
+                name = "Escha Kirin",
                 x = -1.582,
                 y = -54.039,
                 z = -597.508,

@@ -38,4 +38,5 @@
 
 catseyexi/lua
 catseyexi/sql
+omicron/lua
 custom/cpp

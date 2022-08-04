@@ -15,17 +15,23 @@ m:addOverride("xi.zones.Escha_RuAun.Zone.onInitialize", function(zone)
 
         objtype = xi.objType.NPC,
         name = "Suzaku Portal",
-		look = "0x0000340000000000000000000000000000000000",
-        x = -358.551,
-        y = -40.106,
-        z = -254.958,
+		look = 2492,
+        x = -359.060,
+        y = -40.105,
+        z = -255.183,
         rotation = 28,
         widescan = 1,
 
         onTrigger = function(player, npc)
-		    if player:hasKeyItem(xi.keyItem.SUZAKUS_BENEFACTION) then
-		        player:setPos(-454.702, -71.552, -308.579)
-		    end
+		    player:injectActionPacket(6, 600, 0, 0, 0)
+		      
+			player:timer(2000, function(playerArg)
+       			player:setPos(-454.702, -71.552, -308.579)
+			end)
+
+		    player:timer(2750, function(playerArg)
+    		    player:injectActionPacket(6, 602, 0, 0, 0)
+			end)
 		end,
     })
 
@@ -33,16 +39,22 @@ m:addOverride("xi.zones.Escha_RuAun.Zone.onInitialize", function(zone)
 
         objtype = xi.objType.NPC,
         name = "Byakko Portal",
-		look = "0x0000340000000000000000000000000000000000",
-        x = -353.084,
-        y = -40.106,
-        z = 262.058,
+		look = 2492,
+        x = -353.819,
+        y = -40.105,
+        z = 262.473,
         rotation = 28,
 
         onTrigger = function(player, npc)
-		    if player:hasKeyItem(xi.keyItem.BYAKKOS_PRIDE) then
-		        player:setPos(-443.993, -71.552, 336.419)
-		    end
+	        player:injectActionPacket(6, 600, 0, 0, 0)
+
+			player:timer(2000, function(playerArg)
+			    player:setPos(-443.993, -71.552, 336.419)
+			end)	
+			
+		    player:timer(2750, function(playerArg)
+    		    player:injectActionPacket(6, 602, 0, 0, 0)
+			end)
 		end,
     })
 
@@ -50,16 +62,22 @@ m:addOverride("xi.zones.Escha_RuAun.Zone.onInitialize", function(zone)
 
         objtype = xi.objType.NPC,
         name = "Genbu Portal",
-		look = "0x0000340000000000000000000000000000000000",
+		look = 2492,
         x = 140.386,
         y = -40.147,
         z = 417.497,
         rotation = 28,
 
         onTrigger = function(player, npc)
-		    if player:hasKeyItem(xi.keyItem.GENBUS_HONOR) then
-		        player:setPos(186.160, -71.552, 515.480)
-		    end
+	        player:injectActionPacket(6, 600, 0, 0, 0)
+
+			player:timer(2000, function(playerArg)
+			    player:setPos(186.160, -71.552, 515.480)
+			end)
+			
+		    player:timer(2750, function(playerArg)
+    		    player:injectActionPacket(6, 602, 0, 0, 0)
+			end)
 		end,
     })
 
@@ -67,16 +85,22 @@ m:addOverride("xi.zones.Escha_RuAun.Zone.onInitialize", function(zone)
 
         objtype = xi.objType.NPC,
         name = "Seiyru Portal",
-		look = "0x0000340000000000000000000000000000000000",
-        x = 441.000,
+		look = 2492,
+        x = 440.573,
         y = -40.106,
-        z = -4.900,
+        z = -4.610,
         rotation = 28,
 
         onTrigger = function(player, npc)
-		    if player:hasKeyItem(xi.keyItem.SEIRYUS_NOBILITY) then
-		        player:setPos(548.250, -71.552, -17.000)
-		    end
+	        player:injectActionPacket(6, 600, 0, 0, 0)
+			
+			player:timer(2000, function(playerArg)
+			    player:setPos(548.250, -71.552, -17.000)
+			end)
+			
+		    player:timer(2750, function(playerArg)
+    		    player:injectActionPacket(6, 602, 0, 0, 0)
+			end)
 		end,
     })
 	
@@ -86,13 +110,12 @@ m:addOverride("xi.zones.Escha_RuAun.Zone.onInitialize", function(zone)
     local suzport = zone:insertDynamicEntity({
 
         objtype = xi.objType.NPC,
-        name = "Suzaku Pop",
-		look = "0600900400000000000000000000000000000000",
-        x = -497.334,
+        name = "Fire Beacon",
+		look = 2824,
+        x = -492.100,
         y = -70.020,
-        z = -239.032,
-        rotation = 28,
-        widescan = 1,
+        z = -253.984,
+        rotation = 0,
 
         onTrigger = function(player, npc)
         if player:getGMLevel() > 0 and player:checkNameFlags(0x04000000) or
@@ -108,12 +131,12 @@ m:addOverride("xi.zones.Escha_RuAun.Zone.onInitialize", function(zone)
     local byaport = zone:insertDynamicEntity({
 
         objtype = xi.objType.NPC,
-        name = "Byakko Pop",
-		look = "0600900400000000000000000000000000000000",
-        x = -383.542,
+        name = "Light Beacon",
+		look = 2824,
+        x = -393.230,
         y = -70.020,
-        z = 399.272,
-        rotation = 28,
+        z = 390.329,
+        rotation = 0,
 
         onTrigger = function(player, npc)
         if player:getGMLevel() > 0 and player:checkNameFlags(0x04000000) or
@@ -128,12 +151,12 @@ m:addOverride("xi.zones.Escha_RuAun.Zone.onInitialize", function(zone)
     local genport = zone:insertDynamicEntity({
 
         objtype = xi.objType.NPC,
-        name = "Genbu Pop",
-		look = "0600900400000000000000000000000000000000",
-        x = 260.729,
+        name = "Water Beacon",
+		look = 2824,
+        x = 251.169,
         y = -70.020,
-        z = 485.106,
-        rotation = 28,
+        z = 494.367,
+        rotation = 0,
 
         onTrigger = function(player, npc)
         if player:getGMLevel() > 0 and player:checkNameFlags(0x04000000) or
@@ -148,12 +171,12 @@ m:addOverride("xi.zones.Escha_RuAun.Zone.onInitialize", function(zone)
     local syrpop = zone:insertDynamicEntity({
 
         objtype = xi.objType.NPC,
-        name = "Seiryu Pop",
-		look = "0600900400000000000000000000000000000000",
-        x = 545.647,
+        name = "Wind Beacon",
+		look = 2824,
+        x = 548.096,
         y = -70.020,
-        z = -95.372,
-        rotation = 28,
+        z = -85.344,
+        rotation = 0,
 
         onTrigger = function(player, npc)
         if player:getGMLevel() > 0 and player:checkNameFlags(0x04000000) or
@@ -168,12 +191,12 @@ m:addOverride("xi.zones.Escha_RuAun.Zone.onInitialize", function(zone)
 	local kirpop = zone:insertDynamicEntity({
 
         objtype = xi.objType.NPC,
-        name = "Kirin Pop",
-		look = "0600900400000000000000000000000000000000",
-        x = -1.069,
+        name = "Avatar Beacon",
+		look = 2827,
+        x = -1.216,
         y = -55.240,
-        z = -634.199,
-        rotation = 28,
+        z = -632.844,
+        rotation = 0,
 
         onTrigger = function(player, npc)
         if player:getGMLevel() > 0 and player:checkNameFlags(0x04000000) or

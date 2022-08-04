@@ -1,5 +1,5 @@
 # Delete all mobs from Escha_RuAun
-DELETE FROM mob_groups WHERE zoneid = "289";
+# DELETE FROM mob_groups WHERE zoneid = "289";
 
 # Remove NPC's from entrance (just in case)
 # DELETE FROM npc_list WHERE npcid = "17961710";

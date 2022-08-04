@@ -14,44 +14,85 @@ local GodsWin = (player:getCharVar("[Eschan]Byakko") == 1) and (player:getCharVa
 
 local menu =
     {
-        title = "Sky Gods 2.0",
+        title = "Choose your destination",
         onStart = function(playerArg)
-            playerArg:PrintToPlayer("Where would you like to go?", xi.msg.channel.NS_SAY)
+            -- playerArg:PrintToPlayer("Where would you like to go?", xi.msg.channel.NS_SAY)
         end,
         options =
         {
             {
-                "Suzaku",
+                "Suzaku's Nest",
                 function(playerarg)
-                player:setPos(-454.030, -3.626, -147.184)
+                    player:PrintToPlayer("Electricty begins surging through your body!!", xi.msg.channel.NS_SAY)
+    			    player:injectActionPacket(6, 600, 0, 0, 0)
+
+    			    player:timer(2000, function(playerArg)
+                        player:setPos(-454.030, -3.626, -147.184)
+					end)
+
+    		        player:timer(2750, function(playerArg)
+						player:injectActionPacket(6, 602, 0, 0, 0)
+					end)
                 end,
             },
             {
-                "Byakko",
+                "Byakko's Pride",
                 function(playerArg)
-                player:setPos(-280.484, -3.626, 386.104)
+                    player:PrintToPlayer("Electricty begins surging through your body!!", xi.msg.channel.NS_SAY)
+    			    player:injectActionPacket(6, 600, 0, 0, 0)
+
+    			    player:timer(2000, function(playerArg)
+                        player:setPos(-280.484, -3.626, 386.104)
+					end)
+
+    		        player:timer(2750, function(playerArg)
+						player:injectActionPacket(6, 602, 0, 0, 0)
+					end)
                 end,
             },
             {
-                "Genbu",
+                "Genbu's Cove",
                 function(playerArg)
-                player:setPos(278.092, -3.998, 382.416)
+                    player:PrintToPlayer("Electricty begins surging through your body!!", xi.msg.channel.NS_SAY)
+    			    player:injectActionPacket(6, 600, 0, 0, 0)
+
+    			    player:timer(2000, function(playerArg)
+                        player:setPos(278.092, -3.998, 382.416)
+					end)
+
+    		        player:timer(2750, function(playerArg)
+						player:injectActionPacket(6, 602, 0, 0, 0)
+					end)
                 end,
             },
             {
-                "Seiryu",
+                "Seiryu's Shadows",
                 function(playerArg)
-                player:setPos(451.753, -3.790, -146.248)
+                    player:PrintToPlayer("Electricty begins surging through your body!!", xi.msg.channel.NS_SAY)
+    			    player:injectActionPacket(6, 600, 0, 0, 0)
+
+    			    player:timer(2000, function(playerArg)
+                        player:setPos(451.753, -3.790, -146.248)
+					end)
+
+    		        player:timer(2750, function(playerArg)
+						player:injectActionPacket(6, 602, 0, 0, 0)
+					end)
                 end,
             },
             {
                 "???",
                 function(playerArg)
-				    if GodsWin then
-                         player:setPos(-1.626, -52.365, -583.528)
-				    else 
-				    	playerArg:PrintToPlayer("You have not proven your worth just yet!", xi.msg.channel.NS_SAY)
-                    end
+                    player:PrintToPlayer("Electricty begins surging through your body!!", xi.msg.channel.NS_SAY)
+       			    player:injectActionPacket(6, 600, 0, 0, 0)
+   
+       			    player:timer(2000, function(playerArg)
+                        player:setPos(-1.626, -52.365, -583.528)
+   					end)
+   
+       		        player:timer(2750, function(playerArg)
+   						player:injectActionPacket(6, 602, 0, 0, 0)
+   					end)
 				end,
             },
 
@@ -67,20 +108,20 @@ end)
 m:addOverride("xi.zones.Escha_RuAun.npcs.Eschan_Portal_#2.onTrigger", function(player, npc)
 local menu =
     {
-        title = "return",
+        title = "Return to Entrance?",
         onStart = function(playerArg)
-            playerArg:PrintToPlayer("Would you like to go back?", xi.msg.channel.NS_SAY)
+            -- -- playerArg:PrintToPlayer("Would you like to go back?", xi.msg.channel.NS_SAY)
         end,
         options =
         {
             {
-                "Yes",
+                "Yes, take me back.",
                 function(playerarg)
                   xi.teleport.to(player, xi.teleport.id.ESCHA_RUAUN)
                 end,
             },
             {
-                "No",
+                "No, I'm not finished yet!",
                 function(playerArg)
 
                 end,
@@ -97,9 +138,9 @@ end)
 m:addOverride("xi.zones.Escha_RuAun.npcs.Eschan_Portal_#3.onTrigger", function(player, npc)
 local menu =
     {
-        title = "return",
+        title = "Return to Entrance?",
         onStart = function(playerArg)
-            playerArg:PrintToPlayer("Would you like to go back?", xi.msg.channel.NS_SAY)
+            -- playerArg:PrintToPlayer("Would you like to go back?", xi.msg.channel.NS_SAY)
         end,
         options =
         {
@@ -127,9 +168,9 @@ end)
 m:addOverride("xi.zones.Escha_RuAun.npcs.Eschan_Portal_#4.onTrigger", function(player, npc)
 local menu =
     {
-        title = "return",
+        title = "Return to Entrance?",
         onStart = function(playerArg)
-            playerArg:PrintToPlayer("Would you like to go back?", xi.msg.channel.NS_SAY)
+            -- playerArg:PrintToPlayer("Would you like to go back?", xi.msg.channel.NS_SAY)
         end,
         options =
         {
@@ -157,9 +198,9 @@ end)
 m:addOverride("xi.zones.Escha_RuAun.npcs.Eschan_Portal_#5.onTrigger", function(player, npc)
 local menu =
     {
-        title = "return",
+        title = "Return to Entrance?",
         onStart = function(playerArg)
-            playerArg:PrintToPlayer("Would you like to go back?", xi.msg.channel.NS_SAY)
+            -- playerArg:PrintToPlayer("Would you like to go back?", xi.msg.channel.NS_SAY)
         end,
         options =
         {
@@ -187,9 +228,9 @@ end)
 m:addOverride("xi.zones.Escha_RuAun.npcs.Eschan_Portal_#6.onTrigger", function(player, npc)
 local menu =
     {
-        title = "return",
+        title = "Return to Entrance?",
         onStart = function(playerArg)
-            playerArg:PrintToPlayer("Would you like to go back?", xi.msg.channel.NS_SAY)
+            -- playerArg:PrintToPlayer("Would you like to go back?", xi.msg.channel.NS_SAY)
         end,
         options =
         {
@@ -217,9 +258,9 @@ end)
 m:addOverride("xi.zones.Escha_RuAun.npcs.Eschan_Portal_#7.onTrigger", function(player, npc)
 local menu =
     {
-        title = "return",
+        title = "Return to Entrance?",
         onStart = function(playerArg)
-            playerArg:PrintToPlayer("Would you like to go back?", xi.msg.channel.NS_SAY)
+            -- playerArg:PrintToPlayer("Would you like to go back?", xi.msg.channel.NS_SAY)
         end,
         options =
         {
@@ -247,9 +288,9 @@ end)
 m:addOverride("xi.zones.Escha_RuAun.npcs.Eschan_Portal_#8.onTrigger", function(player, npc)
 local menu =
     {
-        title = "return",
+        title = "Return to Entrance?",
         onStart = function(playerArg)
-            playerArg:PrintToPlayer("Would you like to go back?", xi.msg.channel.NS_SAY)
+            -- playerArg:PrintToPlayer("Would you like to go back?", xi.msg.channel.NS_SAY)
         end,
         options =
         {
@@ -277,9 +318,9 @@ end)
 m:addOverride("xi.zones.Escha_RuAun.npcs.Eschan_Portal_#9.onTrigger", function(player, npc)
 local menu =
     {
-        title = "return",
+        title = "Return to Entrance?",
         onStart = function(playerArg)
-            playerArg:PrintToPlayer("Would you like to go back?", xi.msg.channel.NS_SAY)
+            -- playerArg:PrintToPlayer("Would you like to go back?", xi.msg.channel.NS_SAY)
         end,
         options =
         {
@@ -307,9 +348,9 @@ end)
 m:addOverride("xi.zones.Escha_RuAun.npcs.Eschan_Portal_#10.onTrigger", function(player, npc)
 local menu =
     {
-        title = "return",
+        title = "Return to Entrance?",
         onStart = function(playerArg)
-            playerArg:PrintToPlayer("Would you like to go back?", xi.msg.channel.NS_SAY)
+            -- playerArg:PrintToPlayer("Would you like to go back?", xi.msg.channel.NS_SAY)
         end,
         options =
         {
@@ -338,9 +379,9 @@ end)
 m:addOverride("xi.zones.Escha_RuAun.npcs.Eschan_Portal_#11.onTrigger", function(player, npc)
 local menu =
     {
-        title = "return",
+        title = "Return to Entrance?",
         onStart = function(playerArg)
-            playerArg:PrintToPlayer("Would you like to go back?", xi.msg.channel.NS_SAY)
+            -- playerArg:PrintToPlayer("Would you like to go back?", xi.msg.channel.NS_SAY)
         end,
         options =
         {
@@ -368,9 +409,9 @@ end)
 m:addOverride("xi.zones.Escha_RuAun.npcs.Eschan_Portal_#12.onTrigger", function(player, npc)
 local menu =
     {
-        title = "return",
+        title = "Return to Entrance?",
         onStart = function(playerArg)
-            playerArg:PrintToPlayer("Would you like to go back?", xi.msg.channel.NS_SAY)
+            -- playerArg:PrintToPlayer("Would you like to go back?", xi.msg.channel.NS_SAY)
         end,
         options =
         {
@@ -399,9 +440,9 @@ end)
 m:addOverride("xi.zones.Escha_RuAun.npcs.Eschan_Portal_#13.onTrigger", function(player, npc)
 local menu =
     {
-        title = "return",
+        title = "Return to Entrance?",
         onStart = function(playerArg)
-            playerArg:PrintToPlayer("Would you like to go back?", xi.msg.channel.NS_SAY)
+            -- playerArg:PrintToPlayer("Would you like to go back?", xi.msg.channel.NS_SAY)
         end,
         options =
         {
@@ -429,9 +470,9 @@ end)
 m:addOverride("xi.zones.Escha_RuAun.npcs.Eschan_Portal_#15.onTrigger", function(player, npc)
 local menu =
     {
-        title = "return",
+        title = "Return to Entrance?",
         onStart = function(playerArg)
-            playerArg:PrintToPlayer("Would you like to go back?", xi.msg.channel.NS_SAY)
+            -- playerArg:PrintToPlayer("Would you like to go back?", xi.msg.channel.NS_SAY)
         end,
         options =
         {
