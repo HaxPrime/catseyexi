@@ -31,7 +31,7 @@ m:addOverride("xi.zones.Kamihr_Drifts.Zone.onZoneTick", function(zone)
     if
         GetServerVariable("[Domain]NM") == 0 and               -- Correct NM
         GetServerVariable("[Domain]NMSpawned") == 0 and        -- NM isn't spawned
-        (os.time() - GetServerVariable("[Domain]NMToD")) > 30 -- NM Cooldown
+        (os.time() - GetServerVariable("[Domain]NMToD")) > 300 -- NM Cooldown
     then
         local mob = zone:insertDynamicEntity({
             objtype = xi.objType.MOB,
@@ -54,16 +54,6 @@ m:addOverride("xi.zones.Kamihr_Drifts.Zone.onZoneTick", function(zone)
             end,    
 
             onMobFight = function(mob, target)
---[[                if mob:getHPP() < 10 then
-                    local players = mob:getZone():getPlayers()
-                    printf("players: %s", players)
-                    
-                    for i, participant in pairs(players) do
-                        if participant:hasEnmity() then
-                            participant:setLocalVar("[Domain]Participant", 1)
-                        end    
-                    end
-                end  ]]--
             end,
 
             onMobDeath = function(mob, player, isKiller, noKiller)
@@ -134,7 +124,7 @@ m:addOverride("xi.zones.Reisenjima_Henge.Zone.onZoneTick", function(zone)
     if
         GetServerVariable("[Domain]NM") == 1 and               -- Correct NM
         GetServerVariable("[Domain]NMSpawned") == 0 and        -- NM isn't spawned
-        (os.time() - GetServerVariable("[Domain]NMToD")) > 30 -- NM Cooldown
+        (os.time() - GetServerVariable("[Domain]NMToD")) > 300 -- NM Cooldown
     then
         local mob = zone:insertDynamicEntity({
             objtype = xi.objType.MOB,
@@ -250,7 +240,7 @@ m:addOverride("xi.zones.Provenance.Zone.onZoneTick", function(zone)
     if
         GetServerVariable("[Domain]NM") == 2 and               -- Correct NM
         GetServerVariable("[Domain]NMSpawned") == 0 and        -- NM isn't spawned
-        (os.time() - GetServerVariable("[Domain]NMToD")) > 30 -- NM Cooldown
+        (os.time() - GetServerVariable("[Domain]NMToD")) > 300 -- NM Cooldown
     then
         local mob = zone:insertDynamicEntity({
             objtype     = xi.objType.MOB,
@@ -306,19 +296,6 @@ m:addOverride("xi.zones.Provenance.Zone.onZoneTick", function(zone)
 
         -- Set MobMods 
         mob:setMobLevel(76)
-  --[[      mob:addMod(xi.mod.MAIN_DMG_RATING, 50)
-        mob:addMod(xi.mod.STR, 20)
-        mob:addMod(xi.mod.VIT, 10)
-        mob:addMod(xi.mod.INT, 25)
-        mob:addMod(xi.mod.MND, 10)
-        mob:addMod(xi.mod.CHR, 10)
-        mob:addMod(xi.mod.AGI, 10)
-        mob:addMod(xi.mod.DEX, 20)
-        mob:addMod(xi.mod.DEFP, 30)
-        mob:addMod(xi.mod.RATTP, 100)
-        mob:addMod(xi.mod.ACC, 100)
-        mob:setMod(xi.mod.MATT, 380)
-        mob:setMod(xi.mod.MACC, 900)  --]]
         mob:setMod(xi.mod.SILENCERES, 100)
         mob:setMod(xi.mod.STUNRES, 50)
         mob:setMod(xi.mod.BINDRES, 100)
@@ -334,7 +311,6 @@ m:addOverride("xi.zones.Provenance.Zone.onZoneTick", function(zone)
         mob:addStatusEffect(xi.effect.ENTHUNDER_II, 10, 0, 0)
         mob:addStatusEffect(xi.effect.REFRESH, 1, 3, 0)
         mob:setMobMod(xi.mobMod.SKILL_LIST, 164)
---        mob:setMobMod(xi.mobMod.SPELL_LIST, 24)
     end
 
 end)
@@ -349,7 +325,7 @@ m:addOverride("xi.zones.Provenance.Zone.onZoneTick", function(zone)
     if
         GetServerVariable("[Domain]NM") == 3 and               -- Correct NM
         GetServerVariable("[Domain]NMSpawned") == 0 and        -- NM isn't spawned
-        (os.time() - GetServerVariable("[Domain]NMToD")) > 30 -- NM Cooldown
+        (os.time() - GetServerVariable("[Domain]NMToD")) > 300 -- NM Cooldown
     then
         local mob = zone:insertDynamicEntity({
             objtype = xi.objType.MOB,
@@ -479,27 +455,48 @@ end)
 --------------------
 -- Entrances
 --------------------
--- Misareaux Coast -> Kamihr Drifts
-m:addOverride("xi.zones.Misareaux_Coast.npcs.Undulating_Confluence.onEventFinish", function(player, csid, option)
-    if csid == 14 and option == 1 then
-        npcUtil.giveItem(player, xi.items.SCROLL_OF_INSTANT_WARP) -- scroll_of_instant_warp
-        player:setPos(-0.037, -43.676, -260.951, 187, 289)
-        player:addStatusEffect(xi.effect.ELVORSEAL, 1, 0, 0)
-		if GetServerVariable("[Domain]Notification") ~= 1 then
-		    SetServerVariable("[Domain]Notification", 1)
-            player:PrintToArea("{Apururu} Looks like our forces-warses are gathering for domain invasion! Hurry-worry and join them!", xi.msg.channel.SYSTEM_3, xi.msg.area.SYSTEM)
-		end	
-    end
+-- Xarcabard -> Kamihr Drifts
+m:addOverride("xi.zones.Xarcabard.Zone.onInitialize", function(zone)
+    super(zone)
+
+    local driftsPort = zone:insertDynamicEntity({
+
+        objtype = xi.objType.NPC,
+        name = "Black Cloud",
+		look = 2941,
+        x = 116.623,
+        y = -24.00,
+        z = -77.702,
+        rotation = 28,
+
+        onTrigger = function(player, npc)
+            npcUtil.giveItem(player, xi.items.SCROLL_OF_INSTANT_WARP) -- scroll_of_instant_warp
+            player:injectActionPacket(6, 600, 0, 0, 0)
+		          
+		    player:timer(2000, function(playerArg)
+       	    	player:setPos(347.177, 20.616, 293.256, 36, 267)
+		    end)
+		    
+            player:addStatusEffect(xi.effect.ELVORSEAL, 1, 0, 0)
+		    if GetServerVariable("[Domain]Notification") ~= 1 then
+		        SetServerVariable("[Domain]Notification", 1)
+                player:PrintToArea("{Apururu} Looks like our forces-warses are gathering for domain invasion! Hurry-worry and join them!", xi.msg.channel.SYSTEM_3, xi.msg.area.SYSTEM)
+		    end	
+		end,
+    })
+	
+	utils.unused(driftsPort)
+	
 end)
 
---[[ Lock players in designated  area
-m:addOverride("xi.zones.Escha_RuAun.Zone.onInitialize", function(zone)
-    zone:registerRegion( 1, -21.333, -45.000, -358.966, 27.514, -35.000, -159.184)
+--Lock players in designated  area
+m:addOverride("xi.zones.Kamihr_Drifts.Zone.onInitialize", function(zone)
+    zone:registerRegion(1, 320.835, 19.534, 294.411, 332.153, 20.000, 304.651)
 end)
 
-m:addOverride("xi.zones.Escha_RuAun.Zone.onRegionLeave", function(player, region)
-    player:setPos(0.18, -43.965, -239.065)
-end) ]]--
+m:addOverride("xi.zones.Kamihr_Drifts.Zone.onRegionLeave", function(player, region)
+    player:setPos(336.885, 20.742, 293.693)
+end)
 
 -- Qufim Island -> Provenance
 m:addOverride("xi.zones.Qufim_Island.npcs.Undulating_Confluence.onTrigger", function(player, npc)
@@ -692,15 +689,15 @@ m:addOverride("xi.zones.Kamihr_Drifts.Zone.onInitialize", function(zone)
         z = 298.611,
         rotation = 65,
     })
---[[
+
     local beam2 = zone:insertDynamicEntity({
         objtype = xi.objType.NPC,
         name = " ",
         flag = 2056,
         look = 2472,
-        x = -14.616,
-        y = -43.600,
-        z = -211.294,
+        x = 327.879,
+        y = 19.999,
+        z = 296.135,
         rotation = 65,
     })
 
@@ -709,111 +706,12 @@ m:addOverride("xi.zones.Kamihr_Drifts.Zone.onInitialize", function(zone)
         name = " ",
         flag = 2056,
         look = 2472,
-        x = -18.180,
-        y = -43.600,
-        z = -207.990,
+        x = 331.768,
+        y = 20,
+        z = 300.841,
         rotation = 65,
     })
 
-    local beam4 = zone:insertDynamicEntity({
-        objtype = xi.objType.NPC,
-        name = " ",
-        flag = 2056,
-        look = 2472,
-        x = 14.2821,
-        y = -43.600,
-        z = -212.763,
-        rotation = 65,
-    })
-
-    local beam5 = zone:insertDynamicEntity({
-        objtype = xi.objType.NPC,
-        name = " ",
-        flag = 2056,
-        look = 2472,
-        x = 17.416,
-        y = -43.600,
-        z = -209.548,
-        rotation = 65,
-    })
-
-    local beam6 = zone:insertDynamicEntity({
-        objtype = xi.objType.NPC,
-        name = " ",
-        flag = 2056,
-        look = 2472,
-        x = 20.832,
-        y = -43.600,
-        z = -205.457,
-        rotation = 65,
-    })
-
-    local beam7 = zone:insertDynamicEntity({
-        objtype = xi.objType.NPC,
-        name = " ",
-        flag = 2056,
-        look = 2472,
-        x = 8.912,
-        y = -44.0130,
-        z = -188.321,
-        rotation = 65,
-    })
-
-    local beam8 = zone:insertDynamicEntity({
-        objtype = xi.objType.NPC,
-        name = " ",
-        flag = 2056,
-        look = 2472,
-        x = 5.442,
-        y = -44.013,
-        z = -188.354,
-        rotation = 65,
-    })
-
-    local beam9 = zone:insertDynamicEntity({
-        objtype = xi.objType.NPC,
-        name = " ",
-        flag = 2056,
-        look = 2472,
-        x = 0.652,
-        y = -44.013,
-        z = -188.392,
-        rotation = 65,
-    })
-
-    local beam10 = zone:insertDynamicEntity({
-        objtype = xi.objType.NPC,
-        name = " ",
-        flag = 2056,
-        look = 2472,
-        x = -4.160,
-        y = -44.013,
-        z = -188.129,
-        rotation = 65,
-    })
-
-    local beam11 = zone:insertDynamicEntity({
-        objtype = xi.objType.NPC,
-        name = " ",
-        flag = 2056,
-        look = 2472,
-        x = -8.615,
-        y = -44.013,
-        z = -187.925,
-        rotation = 65,
-    })
-
-    local beam12 = zone:insertDynamicEntity({
-        objtype = xi.objType.NPC,
-        name = " ",
-        flag = 2056,
-        look = 2472,
-        x = -0.113,
-        y = -40.00,
-        z = -359.595,
-        rotation = 65,
-    })
-]]--
 end)
 -- End Decorations
 

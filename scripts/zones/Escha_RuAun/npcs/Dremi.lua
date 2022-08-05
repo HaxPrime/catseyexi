@@ -12,7 +12,7 @@ local GodsWin = (player:getCharVar("[Eschan]Byakko") == 1) and (player:getCharVa
 				(player:getCharVar("[Eschan]Genbu") == 1) and (player:getCharVar("[Eschan]Seiryu") == 1) 
 				
     if player:hasKeyItem(xi.keyItem.CERULEAN_CRYSTAL) and
-         player:getRank(player:getNation()) >= 10 then
+        player:getRank(player:getNation()) >= 10 then
 	    if npcUtil.tradeHas(trade, {{ 3277, 3 }}) then
 	        player:tradeComplete()
         	npcUtil.giveKeyItem(player, xi.keyItem.SEIRYUS_NOBILITY)
@@ -38,11 +38,19 @@ end
 
 entity.onTrigger = function(player, npc)
     if player:hasKeyItem(xi.keyItem.CERULEAN_CRYSTAL) and
-       player:getRank(player:getNation()) >= 10 then
-	   player:PrintToPlayer("I feel that you are worthy and are ready for these small challenges!", xi.msg.channel.NS_SAY)
-       player:PrintToPlayer("If you are ready please trade me the scraps of the gods!!!!", xi.msg.channel.NS_SAY)
+        player:getRank(player:getNation()) >= 10 then
+	    player:PrintToPlayer("Dremi: My, oh my! Look at those muscles...", xi.msg.channel.NS_SAY)
+	   
+	    player:timer(1000, function(playerArg)
+	        player:PrintToPlayer("You begin feeling like a piece of meat as Dremi looks you up and down...", xi.msg.channel.UNKNOWN_32)
+	    end)
+		
+	    player:timer(4000, function(playerArg)
+	        player:PrintToPlayer("Dremi: You're going to do just fine here, darling... Trade me scraps to get started.", xi.msg.channel.NS_SAY)
+	    end)
+
     else
-       player:PrintToPlayer("You are not ready for what lies ahead, come back when you are more skilled!", xi.msg.channel.NS_SAY)
+        player:PrintToPlayer("You are not yet prepared to tackle these challenges!", xi.msg.channel.NS_SAY)
     end
 end
 
