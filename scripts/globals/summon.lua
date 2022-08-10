@@ -391,7 +391,12 @@ xi.summon.avatarFinalAdjustments = function(dmg, mob, skill, target, skilltype, 
 
     -- handling stoneskin
     dmg = utils.stoneskin(target, dmg)
-
+    
+    -- Make sure NM's in Escha RuAun are immune to SMN BP.
+    if mob:getZoneID() == 289 and target:getID() > 17961378 then
+        dmg = dmg / 10    
+    end
+    
     return dmg
 end
 
