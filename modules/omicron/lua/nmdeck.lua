@@ -5,6 +5,15 @@ require("scripts/zones/Escha_RuAun/Zone")
 local m = Module:new("???_Ports")
 m:setEnabled(true)
 
+local mob =
+{
+    BYAKKO    = 17961559,
+    GENBU     = 17961562,
+    SEIRYU    = 17961565,
+    SUZAKU    = 17961568,
+    KIRIN     = 17961571,    
+}
+
 m:addOverride("xi.zones.Escha_RuAun.Zone.onInitialize", function(zone)
     -------------------------
 	-- Port to GOD Balcony --
@@ -118,15 +127,16 @@ m:addOverride("xi.zones.Escha_RuAun.Zone.onInitialize", function(zone)
         rotation = 0,
 
         onTrigger = function(player, npc)
-        if player:getGMLevel() > 0 and player:checkNameFlags(0x04000000) or
-		   player:hasKeyItem(xi.keyItem.SUZAKUS_BENEFACTION) then
-		   player:delKeyItem(xi.keyItem.SUZAKUS_BENEFACTION)
-		   player:PrintToPlayer("You can feel a thunderous force culminating from beneath you...", xi.msg.channel.NS_SAY)
-		   SetServerVariable("[Eschan]Suzaku_Time", os.time())
-		   SetServerVariable("[Eschan]Suzaku", 1)
-
-        end
-	end,
+            if player:getGMLevel() > 0 and player:checkNameFlags(0x04000000) or
+		        player:hasKeyItem(xi.keyItem.SUZAKUS_BENEFACTION) then
+		        player:delKeyItem(xi.keyItem.SUZAKUS_BENEFACTION)
+		        player:PrintToPlayer("You can feel a thunderous force culminating from beneath you...", xi.msg.channel.NS_SAY)
+                player:timer(3000, function(playerArg)
+				    GetMobByID(17961568):setSpawn(-521.813, -70.220, -270.628, 239)
+		            SpawnMob(17961568):updateClaim(player)
+		        end)
+            end
+	    end,
     })
 
     local byaport = zone:insertDynamicEntity({
@@ -140,14 +150,16 @@ m:addOverride("xi.zones.Escha_RuAun.Zone.onInitialize", function(zone)
         rotation = 0,
 
         onTrigger = function(player, npc)
-        if player:getGMLevel() > 0 and player:checkNameFlags(0x04000000) or
-		   player:hasKeyItem(xi.keyItem.BYAKKOS_PRIDE) then
-		   player:delKeyItem(xi.keyItem.BYAKKOS_PRIDE)
-		   player:PrintToPlayer("You can feel a thunderous force culminating from beneath you...", xi.msg.channel.NS_SAY)
-		   SetServerVariable("[Eschan]Byakko_Time", os.time())
-		   SetServerVariable("[Eschan]Byakko", 1)
-        end
-	end,
+            if player:getGMLevel() > 0 and player:checkNameFlags(0x04000000) or
+		       player:hasKeyItem(xi.keyItem.BYAKKOS_PRIDE) then
+		       player:delKeyItem(xi.keyItem.BYAKKOS_PRIDE)
+		       player:PrintToPlayer("You can feel a thunderous force culminating from beneath you...", xi.msg.channel.NS_SAY)
+                player:timer(3000, function(playerArg)
+				    GetMobByID(mob.BYAKKO):setSpawn(-415.262, -70.280, 408.908, 26)
+		            SpawnMob(mob.BYAKKO):updateClaim(player)
+		        end)
+            end
+	    end,
     })
 
     local genport = zone:insertDynamicEntity({
@@ -161,14 +173,16 @@ m:addOverride("xi.zones.Escha_RuAun.Zone.onInitialize", function(zone)
         rotation = 0,
 
         onTrigger = function(player, npc)
-        if player:getGMLevel() > 0 and player:checkNameFlags(0x04000000) or
-		   player:hasKeyItem(xi.keyItem.GENBUS_HONOR) then
-		   player:PrintToPlayer("You can feel a thunderous force culminating from beneath you...", xi.msg.channel.NS_SAY)
-		   SetServerVariable("[Eschan]Genbu_Time", os.time())
-		   SetServerVariable("[Eschan]Genbu", 1)
-		   player:delKeyItem(xi.keyItem.GENBUS_HONOR)
-        end
-	end,
+            if player:getGMLevel() > 0 and player:checkNameFlags(0x04000000) or
+		        player:hasKeyItem(xi.keyItem.GENBUS_HONOR) then
+		        player:PrintToPlayer("You can feel a thunderous force culminating from beneath you...", xi.msg.channel.NS_SAY)
+		        player:delKeyItem(xi.keyItem.GENBUS_HONOR)
+                player:timer(3000, function(playerArg)
+				    GetMobByID(mob.GENBU):setSpawn(261.906, -70.219, 526.206, 78)
+		            SpawnMob(mob.GENBU):updateClaim(player)
+		        end)
+            end
+	    end,
     })
 
     local syrpop = zone:insertDynamicEntity({
@@ -182,14 +196,16 @@ m:addOverride("xi.zones.Escha_RuAun.Zone.onInitialize", function(zone)
         rotation = 0,
 
         onTrigger = function(player, npc)
-        if player:getGMLevel() > 0 and player:checkNameFlags(0x04000000) or
-		   player:hasKeyItem(xi.keyItem.SEIRYUS_NOBILITY) then
-		   player:PrintToPlayer("You can feel a thunderous force culminating from beneath you...", xi.msg.channel.NS_SAY)
-		   SetServerVariable("[Eschan]Seiryu_Time", os.time())
-		   SetServerVariable("[Eschan]Seiryu", 1)
-		   player:delKeyItem(xi.keyItem.SEIRYUS_NOBILITY)
-        end
-	end,
+            if player:getGMLevel() > 0 and player:checkNameFlags(0x04000000) or
+		        player:hasKeyItem(xi.keyItem.SEIRYUS_NOBILITY) then
+		        player:PrintToPlayer("You can feel a thunderous force culminating from beneath you...", xi.msg.channel.NS_SAY)
+		        player:delKeyItem(xi.keyItem.SEIRYUS_NOBILITY)
+                player:timer(3000, function(playerArg)
+				    GetMobByID(mob.SEIRYU):setSpawn(578.687, -70.220, -87.668, 130)
+		            SpawnMob(mob.SEIRYU):updateClaim(player)
+		        end)
+            end
+	    end,
 	})
 	
 	local kirpop = zone:insertDynamicEntity({
@@ -203,14 +219,16 @@ m:addOverride("xi.zones.Escha_RuAun.Zone.onInitialize", function(zone)
         rotation = 0,
 
         onTrigger = function(player, npc)
-        if player:getGMLevel() > 0 and player:checkNameFlags(0x04000000) or
-		   player:hasKeyItem(xi.keyItem.KIRINS_FERVOR) then
-		   player:PrintToPlayer("You can feel a thunderous force culminating from beneath you...", xi.msg.channel.NS_SAY)
-		   SetServerVariable("[Eschan]Kirin_Time", os.time())
-		   SetServerVariable("[Eschan]Kirin", 1)
-		   player:delKeyItem(xi.keyItem.KIRINS_FERVOR)
-        end
-	end,
+            if  player:getGMLevel() > 0 and player:checkNameFlags(0x04000000) or
+	    	    player:hasKeyItem(xi.keyItem.KIRINS_FERVOR) then
+	    	    player:PrintToPlayer("You can feel a thunderous force culminating from beneath you...", xi.msg.channel.NS_SAY)
+	    	    player:delKeyItem(xi.keyItem.KIRINS_FERVOR)
+                player:timer(3000, function(playerArg)
+				    GetMobByID(mob.KIRIN):setSpawn(-0.769, -54.040, -600.119, 67)
+		            SpawnMob(mob.KIRIN):updateClaim(player)
+		        end)
+            end
+	    end,
 	})
 	
 end)
