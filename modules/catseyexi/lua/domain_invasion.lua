@@ -4,6 +4,7 @@
 -- 2022, CatsEyeXI (http://catseyexi.com) / --server server.catseyexi.com
 -----------------------------------
 require("modules/module_utils")
+require("scripts/globals/teleports")
 require("scripts/zones/Kamihr_Drifts/Zone")
 -----------------------------------
 local m = Module:new("domain_invasion")
@@ -498,20 +499,55 @@ m:addOverride("xi.zones.Kamihr_Drifts.Zone.onRegionLeave", function(player, regi
     player:setPos(336.885, 20.742, 293.693)
 end)
 
--- Qufim Island -> Provenance
+-- Qufim Island -> Escha_ZiTah or Provenance
 m:addOverride("xi.zones.Qufim_Island.npcs.Undulating_Confluence.onTrigger", function(player, npc)
     player:startEvent(65)
 end)
 
 m:addOverride("xi.zones.Qufim_Island.npcs.Undulating_Confluence.onEventFinish", function(player, csid, option)
     if csid == 65 and option == 1 then
-        npcUtil.giveItem(player, xi.items.SCROLL_OF_INSTANT_WARP) -- scroll_of_instant_warp
-        player:setPos(-576.140, -228.000, 503.928, 120, 222)
-        player:addStatusEffect(xi.effect.ELVORSEAL, 1, 0, 0)
-		if GetServerVariable("[Domain]Notification") ~= 1 then
-		    SetServerVariable("[Domain]Notification", 1)
-            player:PrintToArea("{Apururu} Looks like our forces-warses are gathering for domain invasion! Hurry-worry and join them!", xi.msg.channel.SYSTEM_3, xi.msg.area.SYSTEM)
-		end	
+	    local menu =
+        {
+            title = "Select your destination",
+            onStart = function(playerArg)
+                -- NOTE: This could be used to lock the player in place
+                -- playerArg:PrintToPlayer("Test Menu Opening", xi.msg.channel.NS_SAY)
+            end,
+            options =
+            {
+                {
+                    "Escha - Zi'Tah",
+                    function(playerArg)
+                        xi.teleport.to(player, xi.teleport.id.ESCHA_ZITAH)
+                    end,
+                },
+                {
+                    "Provenance (Domain Invasion)",
+                    function(playerArg)
+                        npcUtil.giveItem(player, xi.items.SCROLL_OF_INSTANT_WARP) -- scroll_of_instant_warp
+                        player:setPos(-576.140, -228.000, 503.928, 120, 222)
+                        player:addStatusEffect(xi.effect.ELVORSEAL, 1, 0, 0)
+                		if GetServerVariable("[Domain]Notification") ~= 1 then
+                		    SetServerVariable("[Domain]Notification", 1)
+                            player:PrintToArea("{Apururu} Looks like our forces-warses are gathering for domain invasion! Hurry-worry and join them!", xi.msg.channel.SYSTEM_3, xi.msg.area.SYSTEM)
+                		end	
+                    end,
+                },
+            },
+            onCancelled = function(playerArg)
+                playerArg:PrintToPlayer("Aborting ...", xi.msg.channel.NS_SAY)
+            end,
+            
+            onEnd = function(playerArg)
+                if GetServerVariable("[Domain]NM") == 1 then
+            		if GetServerVariable("[Domain]Notification") ~= 1 then
+            		    SetServerVariable("[Domain]Notification", 1)
+                        player:PrintToArea("{Apururu} Looks like our forces-warses are gathering for domain invasion! Hurry-worry and join them!", xi.msg.channel.SYSTEM_3, xi.msg.area.SYSTEM)
+            		end	
+                end    
+            end,
+        }
+        player:customMenu(menu)
     end
 end)
 

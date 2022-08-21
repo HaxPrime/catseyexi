@@ -2,6 +2,6 @@
 cd ..
 :onCrash
 echo [%date% %time%] Restarting No-Go Map Server...
-topaz_game_64.exe --ip 71.164.90.4 --port 54335
+xi_map.exe --ip 91.132.137.205 --port 54341
 echo ...
 GOTO onCrash

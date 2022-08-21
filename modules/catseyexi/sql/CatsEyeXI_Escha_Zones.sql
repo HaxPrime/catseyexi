@@ -5,10 +5,10 @@ UPDATE mob_groups SET HP = "50000", MP = "50000", minLevel = "95", maxLevel = "9
 UPDATE mob_groups SET HP = "50000", MP = "50000", minLevel = "95", maxLevel = "95" WHERE name = "Suzaku-Escha";
 UPDATE mob_groups SET HP = "80000", MP = "50000", minLevel = "100", maxLevel = "100" WHERE name = "Kirin-Escha";
 
+-- Byakko
 INSERT INTO `mob_skills` VALUES (2207,1606,'disorienting_waul',1,20.0,2000,1500,4,0,0,0,0,0,0);
 INSERT INTO `mob_skills` VALUES (1680,984,'predatory_glare',4,10.0,2000,1500,4,0,0,0,0,0,0);
 INSERT INTO `mob_skills` VALUES (1681,17,'crossthrash',4,15.0,2000,1500,4,0,0,1,0,0,0);
-
 INSERT INTO `mob_spell_lists` VALUES ('Byakko',999,5,1,255);   -- Cure_v
 INSERT INTO `mob_spell_lists` VALUES ('Byakko',999,6,1,255);   -- Cure_vi
 INSERT INTO `mob_spell_lists` VALUES ('Byakko',999,21,1,255);  -- Holy
@@ -29,9 +29,11 @@ INSERT INTO `mob_spell_lists` VALUES ('Byakko',999,366,1,255); -- Graviga
 INSERT INTO `mob_skill_lists` VALUES ('Byakko',5017,270);
 INSERT INTO `mob_skill_lists` VALUES ('Byakko',5017,271);
 INSERT INTO `mob_skill_lists` VALUES ('Byakko',5017,273);
-INSERT INTO `mob_skill_lists` VALUES ('Byakko',5017,1680); -- Predatory Glare
-INSERT INTO `mob_skill_lists` VALUES ('Byakko',5017,1681); -- Crossthrash
-INSERT INTO `mob_skill_lists` VALUES ('Byakko',5017,2207); -- Disorienting Waul
+INSERT INTO `mob_skill_lists` VALUES ('Byakko',5017,1680);     -- Predatory Glare
+INSERT INTO `mob_skill_lists` VALUES ('Byakko',5017,1681);     -- Crossthrash
+INSERT INTO `mob_skill_lists` VALUES ('Byakko',5017,2207);     -- Disorienting Waul
 UPDATE `mob_groups` SET `dropid`='3990', `HP`='50000', `MP`='50000', `minLevel` = "95", `maxLevel`='95' WHERE  `groupid` = "78" AND `zoneid` = "289";
 UPDATE `mob_pools` SET `spellList`='999', `skill_list_id`='5017' WHERE  `poolid`=5690;
 
+-- Reduce gil drops from Shadow Dragons in Escha Zi'Tah
+UPDATE mob_family_mods SET value = "500" WHERE familyid = "87" and modid = "54";
