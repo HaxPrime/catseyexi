@@ -506,48 +506,54 @@ end)
 
 m:addOverride("xi.zones.Qufim_Island.npcs.Undulating_Confluence.onEventFinish", function(player, csid, option)
     if csid == 65 and option == 1 then
-	    local menu =
-        {
-            title = "Select your destination",
-            onStart = function(playerArg)
-                -- NOTE: This could be used to lock the player in place
-                -- playerArg:PrintToPlayer("Test Menu Opening", xi.msg.channel.NS_SAY)
-            end,
-            options =
+	    if player:getQuestStatus(xi.quest.log_id.JEUNO, xi.quest.id.jeuno.IN_DEFIANT_CHALLENGE) == QUEST_COMPLETED then
+	        local menu =
             {
+                title = "Select your destination",
+                onStart = function(playerArg)
+                    -- NOTE: This could be used to lock the player in place
+                    -- playerArg:PrintToPlayer("Test Menu Opening", xi.msg.channel.NS_SAY)
+                end,
+		    	
+                options =
                 {
-                    "Escha - Zi'Tah",
-                    function(playerArg)
-                        xi.teleport.to(player, xi.teleport.id.ESCHA_ZITAH)
-                    end,
+                    {
+                        "Escha - Zi'Tah",
+                        function(playerArg)
+                            xi.teleport.to(player, xi.teleport.id.ESCHA_ZITAH)
+                        end,
+                    },
+                    {
+                        "Provenance (Domain Invasion)",
+                        function(playerArg)
+                            npcUtil.giveItem(player, xi.items.SCROLL_OF_INSTANT_WARP) -- scroll_of_instant_warp
+                            player:setPos(-576.140, -228.000, 503.928, 120, 222)
+                            player:addStatusEffect(xi.effect.ELVORSEAL, 1, 0, 0)
+                    		if GetServerVariable("[Domain]Notification") ~= 1 then
+                    		    SetServerVariable("[Domain]Notification", 1)
+                                player:PrintToArea("{Apururu} Looks like our forces-warses are gathering for domain invasion! Hurry-worry and join them!", xi.msg.channel.SYSTEM_3, xi.msg.area.SYSTEM)
+                    		end	
+                        end,
+                    },
                 },
-                {
-                    "Provenance (Domain Invasion)",
-                    function(playerArg)
-                        npcUtil.giveItem(player, xi.items.SCROLL_OF_INSTANT_WARP) -- scroll_of_instant_warp
-                        player:setPos(-576.140, -228.000, 503.928, 120, 222)
-                        player:addStatusEffect(xi.effect.ELVORSEAL, 1, 0, 0)
+		    	
+                onCancelled = function(playerArg)
+                    playerArg:PrintToPlayer("Aborting ...", xi.msg.channel.NS_SAY)
+                end,
+                
+                onEnd = function(playerArg)
+                    if GetServerVariable("[Domain]NM") == 1 then
                 		if GetServerVariable("[Domain]Notification") ~= 1 then
                 		    SetServerVariable("[Domain]Notification", 1)
                             player:PrintToArea("{Apururu} Looks like our forces-warses are gathering for domain invasion! Hurry-worry and join them!", xi.msg.channel.SYSTEM_3, xi.msg.area.SYSTEM)
                 		end	
-                    end,
-                },
-            },
-            onCancelled = function(playerArg)
-                playerArg:PrintToPlayer("Aborting ...", xi.msg.channel.NS_SAY)
-            end,
-            
-            onEnd = function(playerArg)
-                if GetServerVariable("[Domain]NM") == 1 then
-            		if GetServerVariable("[Domain]Notification") ~= 1 then
-            		    SetServerVariable("[Domain]Notification", 1)
-                        player:PrintToArea("{Apururu} Looks like our forces-warses are gathering for domain invasion! Hurry-worry and join them!", xi.msg.channel.SYSTEM_3, xi.msg.area.SYSTEM)
-            		end	
-                end    
-            end,
-        }
-        player:customMenu(menu)
+                    end    
+                end,
+            }
+            player:customMenu(menu)
+		else
+		    xi.teleport.to(player, xi.teleport.id.ESCHA_ZITAH)
+		end
     end
 end)
 
